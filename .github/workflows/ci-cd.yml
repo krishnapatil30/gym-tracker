@@ -1,0 +1,62 @@
+name: Gym Tracker CI/CD
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build-test-docker:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+
+      - name: Install backend dependencies
+        working-directory: backend
+        run: npm ci
+
+      - name: Check backend syntax
+        working-directory: backend
+        run: |
+          node --check src/server.js
+          node --check src/db/db.js
+          node --check src/middleware/authMiddleware.js
+          node --check src/routes/authRoutes.js
+          node --check src/routes/exerciseRoutes.js
+          node --check src/routes/workoutRoutes.js
+          node --check src/routes/dashboardRoutes.js
+          node --check src/routes/progressRoutes.js
+          node --check src/routes/streakRoutes.js
+
+      - name: Install frontend dependencies
+        working-directory: frontend
+        run: npm ci
+
+      - name: Build frontend
+        working-directory: frontend
+        run: npm run build
+
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build backend Docker image
+        run: docker build -t krishnapatil2005/gym-tracker-backend:latest ./backend
+
+      - name: Build frontend Docker image
+        run: docker build -t krishnapatil2005/gym-tracker-frontend:latest ./frontend
+
+      - name: Push backend Docker image
+        run: docker push krishnapatil2005/gym-tracker-backend:latest
+
+      - name: Push frontend Docker image
+        run: docker push krishnapatil2005/gym-tracker-frontend:latest
