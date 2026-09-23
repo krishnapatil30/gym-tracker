@@ -1,3 +1,4 @@
+
 import { API_URL } from "../config";
 import { useEffect, useState } from "react";
 
@@ -27,7 +28,7 @@ function Workouts() {
     const loadWorkouts = async () => {
         try {
             const response = await fetch(
-                "${API_URL}/api/workouts",
+                `${API_URL}/api/workouts`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -48,7 +49,7 @@ function Workouts() {
     const loadExercises = async () => {
         try {
             const response = await fetch(
-                "${API_URL}/api/exercises",
+                `${API_URL}/api/exercises`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -71,7 +72,7 @@ function Workouts() {
 
         try {
             const response = await fetch(
-                "${API_URL}/api/workouts",
+                `${API_URL}/api/workouts`,
                 {
                     method: "POST",
                     headers: {
@@ -457,3 +458,4 @@ function Workouts() {
 }
 
 export default Workouts;
+

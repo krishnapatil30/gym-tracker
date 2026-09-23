@@ -1,6 +1,6 @@
+
 import { API_URL } from "../config";
 import { useEffect, useState } from "react";
-
 
 function Exercises() {
     const [exercises, setExercises] = useState([]);
@@ -20,7 +20,7 @@ function Exercises() {
     const loadExercises = async () => {
         try {
             const response = await fetch(
-                "${API_URL}/api/exercises",
+                `${API_URL}/api/exercises`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -43,7 +43,7 @@ function Exercises() {
 
         const url = editingId
             ? `${API_URL}/api/exercises/${editingId}`
-            : "${API_URL}/api/exercises";
+            : `${API_URL}/api/exercises`;
 
         const method = editingId ? "PUT" : "POST";
 
@@ -235,3 +235,4 @@ function Exercises() {
 }
 
 export default Exercises;
+
