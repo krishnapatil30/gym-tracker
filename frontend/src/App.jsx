@@ -1,3 +1,4 @@
+
 import { useEffect, useState } from "react";
 import Exercises from "./components/Exercises";
 import Workouts from "./components/Workouts";
@@ -31,8 +32,8 @@ function App() {
         e.preventDefault();
 
         const url = isLogin
-            ? "${API_URL}/api/auth/login"
-            : "${API_URL}/api/auth/register";
+            ? `${API_URL}/api/auth/login`
+            : `${API_URL}/api/auth/register`;
 
         const body = isLogin
             ? { email, password }
@@ -78,7 +79,7 @@ function App() {
 
         try {
             const response = await fetch(
-                "${API_URL}/api/dashboard",
+                `${API_URL}/api/dashboard`,
                 {
                     headers: {
                         Authorization: `Bearer ${currentToken}`
@@ -101,7 +102,7 @@ function App() {
 
         try {
             const response = await fetch(
-                "${API_URL}/api/streak",
+                `${API_URL}/api/streak`,
                 {
                     headers: {
                         Authorization: `Bearer ${currentToken}`
@@ -233,13 +234,15 @@ function App() {
 
                 </div>
 
-                <h2 style={{
-    marginBottom: "18px",
-    fontSize: "24px",
-    color: "#172033"
-}}>
-    Dashboard
-</h2>
+                <h2
+                    style={{
+                        marginBottom: "18px",
+                        fontSize: "24px",
+                        color: "#172033"
+                    }}
+                >
+                    Dashboard
+                </h2>
 
                 {!dashboard ? (
                     <p>Loading dashboard...</p>
@@ -247,36 +250,60 @@ function App() {
                     <div style={styles.grid}>
 
                         <div style={styles.statCard}>
-                            <h3 style={{ color: "#64748b", fontSize: "14px" }}>
-    TOTAL WORKOUTS
-</h3>
+                            <h3
+                                style={{
+                                    color: "#64748b",
+                                    fontSize: "14px"
+                                }}
+                            >
+                                TOTAL WORKOUTS
+                            </h3>
+
                             <p style={styles.number}>
                                 {dashboard.total_workouts}
                             </p>
                         </div>
 
                         <div style={styles.statCard}>
-                            <h3 style={{ color: "#64748b", fontSize: "14px" }}>
-    EXERCISES PERFORMED
-</h3>
+                            <h3
+                                style={{
+                                    color: "#64748b",
+                                    fontSize: "14px"
+                                }}
+                            >
+                                EXERCISES PERFORMED
+                            </h3>
+
                             <p style={styles.number}>
                                 {dashboard.total_exercises_performed}
                             </p>
                         </div>
 
                         <div style={styles.statCard}>
-                            <h3 style={{ color: "#64748b", fontSize: "14px" }}>
-    TOTAL VOLUME
-</h3>
+                            <h3
+                                style={{
+                                    color: "#64748b",
+                                    fontSize: "14px"
+                                }}
+                            >
+                                TOTAL VOLUME
+                            </h3>
+
                             <p style={styles.number}>
                                 {dashboard.total_volume}
                             </p>
                         </div>
 
                         <div style={styles.statCard}>
-                            <h3 style={{ color: "#64748b", fontSize: "14px" }}>
-    WORKOUTS THIS WEEK
-</h3>
+                            <h3
+                                style={{
+                                    color: "#64748b",
+                                    fontSize: "14px"
+                                }}
+                            >
+                                WORKOUTS THIS WEEK
+                            </h3>
+
                             <p style={styles.number}>
                                 {dashboard.workouts_this_week}
                             </p>
@@ -285,13 +312,15 @@ function App() {
                     </div>
                 )}
 
-                <h2 style={{
-    marginBottom: "18px",
-    fontSize: "24px",
-    color: "#172033"
-}}>
-    Workout Streak
-</h2>
+                <h2
+                    style={{
+                        marginBottom: "18px",
+                        fontSize: "24px",
+                        color: "#172033"
+                    }}
+                >
+                    Workout Streak
+                </h2>
 
                 {!streak ? (
                     <p>Loading streak...</p>
@@ -299,18 +328,30 @@ function App() {
                     <div style={styles.grid}>
 
                         <div style={styles.statCard}>
-                            <h3 style={{ color: "#64748b", fontSize: "14px" }}>
-    CURRENT STREAK
-</h3>
+                            <h3
+                                style={{
+                                    color: "#64748b",
+                                    fontSize: "14px"
+                                }}
+                            >
+                                CURRENT STREAK
+                            </h3>
+
                             <p style={styles.number}>
                                 {streak.current_streak} 🔥
                             </p>
                         </div>
 
                         <div style={styles.statCard}>
-                            <h3 style={{ color: "#64748b", fontSize: "14px" }}>
-    LONGEST STREAK
-</h3>
+                            <h3
+                                style={{
+                                    color: "#64748b",
+                                    fontSize: "14px"
+                                }}
+                            >
+                                LONGEST STREAK
+                            </h3>
+
                             <p style={styles.number}>
                                 {streak.longest_streak}
                             </p>
@@ -318,10 +359,11 @@ function App() {
 
                     </div>
                 )}
+
                 <Exercises />
                 <Workouts />
                 <Progress />
-      
+
             </div>
         </div>
     );
@@ -432,3 +474,5 @@ const styles = {
 };
 
 export default App;
+
+
