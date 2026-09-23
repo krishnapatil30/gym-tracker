@@ -1,3 +1,4 @@
+import { API_URL } from "../config";
 import { useEffect, useState } from "react";
 
 function Workouts() {
@@ -26,7 +27,7 @@ function Workouts() {
     const loadWorkouts = async () => {
         try {
             const response = await fetch(
-                "http://localhost:5000/api/workouts",
+                "${API_URL}/api/workouts",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -47,7 +48,7 @@ function Workouts() {
     const loadExercises = async () => {
         try {
             const response = await fetch(
-                "http://localhost:5000/api/exercises",
+                "${API_URL}/api/exercises",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -70,7 +71,7 @@ function Workouts() {
 
         try {
             const response = await fetch(
-                "http://localhost:5000/api/workouts",
+                "${API_URL}/api/workouts",
                 {
                     method: "POST",
                     headers: {
@@ -107,7 +108,7 @@ function Workouts() {
     const openWorkout = async (id) => {
         try {
             const response = await fetch(
-                `http://localhost:5000/api/workouts/${id}`,
+                `${API_URL}/api/workouts/${id}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -135,7 +136,7 @@ function Workouts() {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/api/workouts/${selectedWorkout.id}/sets`,
+                `${API_URL}/api/workouts/${selectedWorkout.id}/sets`,
                 {
                     method: "POST",
                     headers: {
@@ -181,7 +182,7 @@ function Workouts() {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/api/workouts/sets/${editingSetId}`,
+                `${API_URL}/api/workouts/sets/${editingSetId}`,
                 {
                     method: "PUT",
                     headers: {
@@ -226,7 +227,7 @@ function Workouts() {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/api/workouts/sets/${id}`,
+                `${API_URL}/api/workouts/sets/${id}`,
                 {
                     method: "DELETE",
                     headers: {

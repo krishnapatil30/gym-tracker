@@ -1,3 +1,4 @@
+import { API_URL } from "../config";
 import { useEffect, useState } from "react";
 
 function Progress() {
@@ -15,7 +16,7 @@ function Progress() {
     const loadExercises = async () => {
         try {
             const response = await fetch(
-                "http://localhost:5000/api/exercises",
+                "${API_URL}/api/exercises",
                 {
                     headers: {
                         Authorization: `Bearer ${token}`
@@ -41,7 +42,7 @@ function Progress() {
 
         try {
             const response = await fetch(
-                `http://localhost:5000/api/progress/${exerciseId}`,
+                `${API_URL}/api/progress/${exerciseId}`,
                 {
                     headers: {
                         Authorization: `Bearer ${token}`

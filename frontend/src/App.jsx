@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import Exercises from "./components/Exercises";
 import Workouts from "./components/Workouts";
 import Progress from "./components/Progress";
+import { API_URL } from "./config";
 
 function App() {
     const [isLogin, setIsLogin] = useState(true);
@@ -30,8 +31,8 @@ function App() {
         e.preventDefault();
 
         const url = isLogin
-            ? "http://localhost:5000/api/auth/login"
-            : "http://localhost:5000/api/auth/register";
+            ? "${API_URL}/api/auth/login"
+            : "${API_URL}/api/auth/register";
 
         const body = isLogin
             ? { email, password }
@@ -77,7 +78,7 @@ function App() {
 
         try {
             const response = await fetch(
-                "http://localhost:5000/api/dashboard",
+                "${API_URL}/api/dashboard",
                 {
                     headers: {
                         Authorization: `Bearer ${currentToken}`
@@ -100,7 +101,7 @@ function App() {
 
         try {
             const response = await fetch(
-                "http://localhost:5000/api/streak",
+                "${API_URL}/api/streak",
                 {
                     headers: {
                         Authorization: `Bearer ${currentToken}`
